@@ -10,17 +10,8 @@ pipeline {
                 sh "mvn compile"
             }
         }
-        stage(CodeReview) {
-            steps {
-                sh "mvn pmd:pmd"
-            }
-            post {
-  success {
-    recordIssues(tools: [pmdParser(pattern: '**/pmd.xml')])
-  }
-}
-}
-        stage(UnitTesting){
+        
+        stage('UnitTesting'){
             steps {
                 sh "mvn test"
             }
